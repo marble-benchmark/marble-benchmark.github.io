@@ -1,0 +1,229 @@
+body {
+  font-family: 'Noto Sans', sans-serif;
+}
+
+
+.footer .icon-link {
+    font-size: 25px;
+    color: #000;
+}
+
+.link-block a {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.dnerf {
+  font-variant: small-caps;
+}
+
+
+.teaser .hero-body {
+  padding-top: 0;
+  padding-bottom: 3rem;
+}
+
+.teaser {
+  font-family: 'Google Sans', sans-serif;
+}
+
+
+.publication-title {
+}
+
+.publication-banner {
+  max-height: parent;
+
+}
+
+.publication-banner video {
+  position: relative;
+  left: auto;
+  top: auto;
+  transform: none;
+  object-fit: fit;
+}
+
+.publication-header .hero-body {
+}
+
+.publication-title {
+    font-family: 'Google Sans', sans-serif;
+}
+
+.publication-authors {
+    font-family: 'Google Sans', sans-serif;
+}
+
+.publication-venue {
+    color: #555;
+    width: fit-content;
+    font-weight: bold;
+}
+
+.publication-awards {
+    color: #ff3860;
+    width: fit-content;
+    font-weight: bolder;
+}
+
+.publication-authors {
+}
+
+.publication-authors a {
+   color: hsl(204, 86%, 53%) !important;
+}
+
+.publication-authors a:hover {
+    text-decoration: underline;
+}
+
+.author-block {
+  display: inline-block;
+}
+
+.publication-banner img {
+}
+
+.publication-authors {
+  /*color: #4286f4;*/
+}
+
+.publication-video {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 56.25%;
+
+    overflow: hidden;
+    border-radius: 10px !important;
+}
+
+.publication-video iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.publication-body img {
+}
+
+.results-carousel {
+  overflow: hidden;
+}
+
+.results-carousel .item {
+  margin: 5px;
+  overflow: hidden;
+  border: 1px solid #bbb;
+  border-radius: 10px;
+  padding: 0;
+  font-size: 0;
+}
+
+.results-carousel video {
+  margin: 0;
+}
+
+
+.interpolation-panel {
+  background: #f5f5f5;
+  border-radius: 10px;
+}
+
+.interpolation-panel .interpolation-image {
+  width: 100%;
+  border-radius: 5px;
+}
+
+.interpolation-video-column {
+}
+
+.interpolation-panel .slider {
+  margin: 0 !important;
+}
+
+.interpolation-panel .slider {
+  margin: 0 !important;
+}
+
+#interpolation-image-wrapper {
+  width: 100%;
+}
+#interpolation-image-wrapper img {
+  border-radius: 5px;
+}
+
+.logo {
+  max-height: 30px;
+  margin: 0 20px;
+}
+
+.carousel img {
+  max-height: 400px;
+  object-fit: contain;
+  margin: auto;
+}
+
+#display-image {
+  margin-top: 20px;
+  border-radius: 0px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.model_name a{
+  text-decoration: underline;
+}
+
+
+.model-icon{
+  width:24px;           /* tweak to taste */
+  height:24px;
+  margin-right:.5em;    /* little gap before the text */
+  vertical-align:middle;
+  object-fit:contain;   /* keeps the icon from stretching */
+}
+
+
+/* Target only our two portal buttons */
+.toggle.button {
+  border-width: 2px;                   /* a bit crisper border        */
+  transition: background-color .25s,
+              color .25s,
+              opacity .25s;
+}
+
+.toggle.button[disabled] {
+  background-color: #6a6a6a;           /* Bulma’s primary hue         */
+  color: #fff;
+  opacity: 1;                          /* UN‑fade the disabled state  */
+  cursor: default;                     /* keep the “inactive” cursor  */
+}
+
+.model-table {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+}
+
+.model-table thead th {
+  font-weight: 600;
+  color:#555;
+  background: #fafafa;
+}
+
+.model-table tbody tr {
+  border-bottom: 1px solid #f0f2f4;
+  font-weight: 400;                  
+}
+
+table tbody td:nth-child(n+2) {
+  font-size: 17px;
+}
+
+.model-table th,
+.model-table td {
+  vertical-align: middle;
+  padding: 0.55rem 0.9rem;
+} 

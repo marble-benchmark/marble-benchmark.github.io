@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="MARBLE: A Hard Benchmark for Multimodal Spatial Reasoning and Planning">
+  <meta name="keywords" content="MARBLE, Multimodal Reasoning">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MARBLE: A Hard Benchmark for Multimodal Spatial Reasoning and Planning</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">MARBLE: A Hard Benchmark for Multimodal Spatial Reasoning and Planning</h1>
+          <div class="columns is-centered">
+            <div class="column is-narrow has-text-centered">
+              <img class="logo" src="static/images/logo-epfl.png" alt="EPFL Logo">
+            </div>
+            <div class="column is-narrow has-text-centered">
+              <img class="logo" src="static/images/logo-ethz.png" alt="ETH Zurich Logo">
+            </div>
+          </div>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://yljblues.github.io/">Yulun Jiang</a><sup>1,2</sup>,</span>
+            <span class="author-block">
+              <a href="https://cyk1337.github.io/">Yekun Chai</a><sup>2</sup>,</span>
+            <span class="author-block"><span class="author-block">
+              <a href="https://brbiclab.epfl.ch/team/">Maria Brbić</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://michaelmoor.me/">Michael Moor</a><sup>2</sup>,
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>Department of Computer and Communication Sciences, EPFL, Lausanne, Switzerland </span>
+            <span class="author-block"><sup>2</sup>Department of Biosystems Science and Engineering, ETH Zurich, Basel, Switzerland</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <!-- PDF Link. -->
+              <!-- <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span> -->
+              <!-- Video Link. -->
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/eth-medical-ai-lab/multimodal-reasoning-bench"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+              <!-- Dataset Link. -->
+              <span class="link-block">
+                <a href="https://huggingface.co/datasets/mrble/MARBLE"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                     🤗
+                  </span>
+                  <span>Dataset</span>
+                  </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            <!-- The ability to process information from multiple modalities and to reason through it step-by-step remains a critical challenge in advancing artificial intelligence. However, existing reasoning benchmarks focus on text-only reasoning, or employ multimodal questions that can be answered by directly retrieving information from a non-text modality. Thus, complex reasoning remains poorly understood in multimodal domains. Here, we present MARBLE, a challenging multimodal reasoning benchmark that is designed to scrutinize multimodal language models (MLLMs) in their ability to carefully reason step-by-step through complex multimodal problems and environments. MARBLE is composed of two highly challenging tasks, M-Portal and M-Cube,
+that require the crafting and understanding of multistep plans leveraging spatial, visual, and physical constraints, which must be executed correctly and in the proper order. 
+We find that current MLLMs perform poorly on MARBLE---only in simplified ablations models outperform random baselines, indicating that complex reasoning is still a challenge for current MLLMs.
+Moreover, we show that perception is still a bottleneck where MLLM occasionally fails to extract information from the visual input.
+By shedding a light on limitations of MLLMs, we hope that MARBLE will spur the development of the next generation of models with the ability to reason and plan across many, multimodal reasoning steps. -->
+
+The ability to process information from multiple modalities and to reason through it step-by-step remains a critical challenge in advancing artificial intelligence. However, existing reasoning benchmarks focus on text-only reasoning, or employ multimodal questions that can be answered by directly retrieving information from a non-text modality. 
+Thus, complex reasoning remains poorly understood in multimodal domains. Here, we present MARBLE, a challenging multimodal reasoning benchmark designed to scrutinize multimodal language models (MLLMs) in their ability to carefully reason step-by-step through complex multimodal problems and environments. 
+MARBLE is composed of two highly challenging tasks, M-Portal and M-Cube, that require the crafting and understanding of multistep plans under spatial, visual, and physical constraints.
+We find that current MLLMs perform poorly on MARBLE&mdash;all the 12 advanced models obtain near-random performance on M-Portal and 0% accuracy on M-Cube. 
+Only in simplified subtasks some models outperform the random baseline, indicating that complex reasoning is still a challenge for existing MLLMs.
+Moreover, we show that perception remains a bottleneck, where MLLMs occasionally fail to extract information from the visual inputs.
+By shedding a light on the limitations of MLLMs, we hope that MARBLE will spur the development of the next generation of models with the ability to reason and plan across many, multimodal reasoning steps.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="content is-centered has-text-centered">
+      <h2 class="title is-3">Overview</h2>
+      <p>MARBLE contains 2 datasets: M-Portal and M-CUBE. Each dataset also contains 2 subtasks, respectively.</p>
+      <img id="display-image" src="static/images/overview.png" alt="Displayed Image" style="max-height: 200px;">
+    </div>
+  <div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="content has-text-justified">
+        <div class="column is-centered has-text-centered">
+          <h2 class="title is-3">M-Portal Dataset</h2>
+        </div>
+        <div class="column is-centered">
+          <p>The M-PORTAL dataset contains 1,024 visual question-answering tasks across 16 high-quality curated maps from the game Portal 2.
+            Models are evaluated on two subtasks: verifying the correctness of full solution plans (Plan-correctness) and identifying missing steps in incomplete ones (Fill-the-blanks), each contributing to 512 problems.
+          </p>       
+        </div>
+        <div class="column is-centered and has-text-centered">
+          <img id="display-portal-image" src="static/images/portal.png" alt="Displayed Image" style="max-height: 500px;">
+        </div>
+        <div class="column is-centered and has-text-centered">      
+          <button class="button toggle" id="portal-dataset-button" onclick="showPortalDatasetImage()" disabled>
+              <span>Dataset Pipeline</span>
+          </button>
+          <button class="button toggle" id="portal-example-button" onclick="showPortalExampleImage()">
+              <span>Example Problem</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="column is-centered">
+      <p>
+      On the plan correctness task, all investigated MLLMs performed very poorly with a minority class F1 score of around 6%, similar to the random baseline. 
+      On the easier fill-the-blanks task, most models outperform the random baseline. 
+      Still, even the best performing model, GPT-o3, manages to correctly solve only 17.6% of the problems.
+      </p>
+    </div>
+    <table class="table is-fullwidth is-hoverable model-table">
+      <thead>
+        <tr>
+          <!-- You can add Font Awesome sort arrows if you like -->
+          <th class="sortable">Model</th>
+          <th class="sortable">Plan-correctness&nbsp;(F1&nbsp;%)</th>
+          <th class="sortable">Fill-the-blanks&nbsp;(Acc&nbsp;%)</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr><td><img class="model-icon" src="static/images/openai.svg"><a href="https://openai.com/index/introducing-o3-and-o4-mini/" style="text-decoration: underline; color: inherit;">GPT-o3           </a></td>          <td>6.6</td><td>17.6</td></tr>
+        <tr><td><img class="model-icon" src="static/images/gemini.png"><a href="https://blog.google/technology/google-deepmind/gemini-model-thinking-updates-march-2025/" style="text-decoration: underline; color: inherit;">Gemini-2.5-pro</a></td>             <td>4.7</td><td>16.1</td></tr>
+        <tr><td><img class="model-icon" src="static/images/deepseek_icon.png"><a href="https://api-docs.deepseek.com/news/news250528" style="text-decoration: underline; color: inherit;">DeepSeek-R1-0528*       </a></td>          <td>0.0</td><td>8.4</td></tr>
+        <tr><td><img class="model-icon" src="static/images/claude.png"><a href="https://www.anthropic.com/news/claude-3-7-sonnet" style="text-decoration: underline; color: inherit;">Claude-3.7-Sonnet    </a></td>          <td>6.3</td><td>6.8</td></tr>
+        <tr><td><img class="model-icon" src="static/images/deepseek_icon.png"><a href="https://arxiv.org/abs/2501.12948" style="text-decoration: underline; color: inherit;">DeepSeek-R1*                         </a></td>          <td>6.1</td><td>5.5</td></tr>
+        <tr><td><img class="model-icon" src="static/images/seed.png"><a href="https://arxiv.org/abs/2505.07062" style="text-decoration: underline; color: inherit;">Seed1.5-VL                           </a></td>          <td>7.6</td><td>3.5</td></tr>
+        <tr><td><img class="model-icon" src="static/images/openai.svg"><a href="https://openai.com/index/introducing-o3-and-o4-mini/" style="text-decoration: underline; color: inherit;">GPT-o4-mini      </a></td>          <td>0.0</td><td>3.1</td></tr>
+        <tr><td><img class="model-icon" src="static/images/openai.svg"><a href="https://arxiv.org/abs/2410.21276" style="text-decoration: underline; color: inherit;">GPT-4o                               </a></td>          <td>6.5</td><td>0.4</td></tr>
+        <tr><td><img class="model-icon" src="static/images/meta_icon.png"><a href="https://ai.meta.com/blog/llama-4-multimodal-intelligence/" style="text-decoration: underline; color: inherit;">Llama-4-Scout</a></td>         <td>6.5</td><td>0.2</td></tr>
+        <tr><td><img class="model-icon" src="static/images/qwen_icon.png"><a href="https://arxiv.org/abs/2502.13923" style="text-decoration: underline; color: inherit;">Qwen2.5-VL-72B                       </a></td>          <td>6.6</td><td>0.2</td></tr>
+        <tr><td><img class="model-icon" src="static/images/internvl.jpg"><a href="https://internvl.github.io/blog/2025-04-11-InternVL-3.0/" style="text-decoration: underline; color: inherit;">InternVL3-78B</a></td>          <td>6.4</td><td>0.0</td></tr>
+        <tr><td><img class="model-icon" src="static/images/qwen_icon.png" alt="Qwen icon"><a href="https://qwenlm.github.io/blog/qwen3/" style="text-decoration: underline; color: inherit;">Qwen3-235B-A22B*                  </a></td>         <td>0.0</td><td>0.0</td></tr>      </tbody>
+        <tr><td><em>Random</em></td>            <td><em>6.1</em></td><td><em>3e-3</em></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="content has-text-justified">
+        <div class="column is-centered has-text-centered">
+          <h2 class="title is-3">M-CUBE Dataset</h2>
+        </div>
+        <p>M-CUBE is a 3D spatial-reasoning benchmark where the goal is to assemble six interlocking jigsaw pieces into a perfect cube.
+          A model must assign every piece to a cube face with correct orientation, exploring a combinatorial search space. 
+          The dataset includes 1,000 CUBE examples at full difficulty and 1,000 CUBE-easy examples with simplified inputs and partial solutions.
+        </p>
+        <div class="column is-centered has-text-centered">
+          <!-- <img id="display-cube-image" src="static/images/cube.png" alt="Displayed Image" style="max-height: 300px;"> -->
+          <div style="height: 300px; display: flex; align-items: center; justify-content: center; background-color: white;">
+            <img id="display-cube-image" src="static/images/cube.png" alt="Displayed Image" style="max-height: 100%">
+          </div>
+        </div>
+        <div class="column is-centered and has-text-centered">      
+          <button class="button toggle" id="cube-dataset-button" onclick="showCubeDatasetImage()" disabled>
+              <span>Dataset Pipeline</span>
+          </button>
+          <button class="button toggle" id="cube-example-button" onclick="showCubeExampleImage()">
+              <span>Example Problem</span>
+          </button>
+        </div>
+      </div>
+    </div>
+    
+    <div class="column is-centered">
+      <p>
+      Notably, all the advanced MLLMs completely fail on the harder subtask CUBE and obtain 0% accuracy. 
+      While on the simplified tasks CUBE-easy, most model score below 20% accuracy. Only GPT-o3 demonstrates reasonable performance of 72.0% accuracy.
+      </p>
+    </div>
+
+    <table class="table is-fullwidth is-hoverable model-table">
+      <thead>
+        <tr>
+          <!-- You can add Font Awesome sort arrows if you like -->
+          <th class="sortable">Model</th>
+          <th class="sortable">CUBE&nbsp;(Acc&nbsp;%)</th>
+          <th class="sortable">CUBE-easy&nbsp;(Acc&nbsp;%)</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr><td><img class="model-icon" src="static/images/openai.svg" alt="OpenAI icon"><a href="https://openai.com/index/introducing-o3-and-o4-mini/" style="text-decoration: underline; color: inherit;">GPT-o3           </a></td>          <td>0.0</td><td>72.0</td></tr>
+        <tr><td><img class="model-icon" src="static/images/openai.svg" alt="OpenAI icon"><a href="https://openai.com/index/introducing-o3-and-o4-mini/" style="text-decoration: underline; color: inherit;">GPT-o4-mini      </a></td>          <td>0.0</td><td>16.0</td></tr>
+        <tr><td><img class="model-icon" src="static/images/deepseek_icon.png" alt="DeepSeek icon"><a href="https://arxiv.org/abs/2501.12948" style="text-decoration: underline; color: inherit;">DeepSeek-R1*                         </a></td>          <td>0.0</td><td>14.0</td></tr>
+        <tr><td><img class="model-icon" src="static/images/gemini.png" alt="Gemini icon"><a href="https://blog.google/technology/google-deepmind/gemini-model-thinking-updates-march-2025/" style="text-decoration: underline; color: inherit;">Gemini-2.5-pro</a></td>             <td>0.0</td><td>11.0</td></tr>
+        <tr><td><img class="model-icon" src="static/images/deepseek_icon.png" alt="DeepSeek icon"><a href="https://api-docs.deepseek.com/news/news250528" style="text-decoration: underline; color: inherit;">DeepSeek-R1-0528*       </a></td>          <td>0.0</td><td>8.0</td></tr>
+        <tr><td><img class="model-icon" src="static/images/claude.png" alt="Claude icon"><a href="https://www.anthropic.com/news/claude-3-7-sonnet" style="text-decoration: underline; color: inherit;">Claude-3.7-Sonnet    </a></td>          <td>0.0</td><td>7.4</td></tr>
+        <tr><td><img class="model-icon" src="static/images/internvl.jpg" alt="InternVL icon"><a href="https://internvl.github.io/blog/2025-04-11-InternVL-3.0/" style="text-decoration: underline; color: inherit;">InternVL3-78B</a></td>          <td>0.0</td><td>2.8</td></tr>
+        <tr><td><img class="model-icon" src="static/images/seed.png" alt="Seed icon"><a href="https://arxiv.org/abs/2505.07062" style="text-decoration: underline; color: inherit;">Seed1.5-VL                           </a></td>          <td>0.0</td><td>2.0</td></tr>
+        <tr><td><img class="model-icon" src="static/images/openai.svg" alt="OpenAI icon"><a href="https://arxiv.org/abs/2410.21276" style="text-decoration: underline; color: inherit;">GPT-4o                               </a></td>          <td>0.0</td><td>2.0</td></tr>
+        <tr><td><img class="model-icon" src="static/images/qwen_icon.png" alt="Qwen icon"><a href="https://arxiv.org/abs/2502.13923" style="text-decoration: underline; color: inherit;">Qwen2.5-VL-72B                       </a></td>          <td>0.0</td><td>2.0</td></tr>
+        <tr><td><img class="model-icon" src="static/images/meta_icon.png" alt="Meta icon"><a href="https://ai.meta.com/blog/llama-4-multimodal-intelligence/" style="text-decoration: underline; color: inherit;">Llama-4-Scout</a></td>         <td>0.0</td><td>1.6</td></tr>
+        <tr><td><img class="model-icon" src="static/images/qwen_icon.png" alt="Qwen icon"><a href="https://qwenlm.github.io/blog/qwen3/" style="text-decoration: underline; color: inherit;">Qwen3-235B-A22B*                  </a></td>         <td>0.0</td><td>0.3</td></tr>
+        <tr><td><em>Random</em></td>            <td><em>1e-5</em></td><td><em>3.1</em></td></tr>
+      </tbody>
+    </table>
+
+    <div class="columns is-centered">
+      <div class="content has-text-justified">
+        <p></p>
+        <p>Additionally, we observe that even the advanced MLLMs struggle with a seemingly simple perception task: convert a jigsaw-style piece into a 5 × 5 array, posing a potential bottleneck for multimodal reasoning in complex scenarios like CUBE</p>
+        <div class="column is-centered has-text-centered">
+          <img id="display-image" src="static/images/perception.png" alt="Displayed Image" style="max-height: 400px;">
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@article{jiang2025marble,
+  title={MARBLE: A Hard Benchmark for Multimodal Spatial Reasoning and Planning},
+  author={Jiang, Yulun and Chai, Yekun and Brbi'c, Maria and Moor, Michael},
+  journal={arXiv preprint arXiv:},
+  year={2025},
+  url={https://arxiv.org/abs/}
+}</code>
+    </pre>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is based on the <a href="https://github.com/nerfies/nerfies.github.io">Nerfies website template</a>, which is licensed under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+</footer>
+</body>
+</html>
