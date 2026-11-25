@@ -1,337 +1,362 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="description"
-        content="MARBLE: A Hard Benchmark for Multimodal Spatial Reasoning and Planning">
-  <meta name="keywords" content="MARBLE, Multimodal Reasoning">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>MARBLE: A Hard Benchmark for Multimodal Spatial Reasoning and Planning</title>
-
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-
-    function gtag() {
-      dataLayer.push(arguments);
-    }
-
-    gtag('js', new Date());
-
-    gtag('config', 'G-PYVRSFMDRL');
-  </script>
-
-  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
-        rel="stylesheet">
-
-  <link rel="stylesheet" href="./static/css/bulma.min.css">
-  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
-  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
-  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
-  <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-  <link rel="stylesheet" href="./static/css/index.css">
-  <link rel="icon" href="./static/images/favicon.svg">
-
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script defer src="./static/js/fontawesome.all.min.js"></script>
-  <script src="./static/js/bulma-carousel.min.js"></script>
-  <script src="./static/js/bulma-slider.min.js"></script>
-  <script src="./static/js/index.js"></script>
+  <meta name="description" content="MARBLE is a diagnostic agentic benchmark for spatial reasoning and visual abstraction across CUBE, MAZE, and BLOX (NeurIPS 2026).">
+  <meta name="theme-color" content="#f5f7f9">
+  <meta property="og:title" content="MARBLE: An Agentic Benchmark for Spatial Reasoning and Visual Abstraction">
+  <meta property="og:description" content="A diagnostic benchmark across CUBE, MAZE, and BLOX isolating visual-to-spatial abstraction from long-horizon planning (NeurIPS 2026).">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://marble-benchmark.github.io/">
+  <title>MARBLE — Spatial Reasoning and Visual Abstraction</title>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;0,8..60,700;1,8..60,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="charts.css">
+  <script src="data.js" defer></script>
+  <script src="charts.js" defer></script>
+  <script src="main.js" defer></script>
 </head>
 <body>
+  <a class="skip-link" href="#benchmark">Skip to main content</a>
+  <canvas id="bg-canvas" aria-hidden="true"></canvas>
 
-<section class="hero">
-  <div class="hero-body">
-    <div class="container is-max-desktop">
-      <div class="columns is-centered">
-        <div class="column has-text-centered">
-          <h1 class="title is-1 publication-title">MARBLE: A Hard Benchmark for Multimodal Spatial Reasoning and Planning</h1>
-          <div class="columns is-centered">
-            <div class="column is-narrow has-text-centered">
-              <img class="logo" src="static/images/logo-epfl.png" alt="EPFL Logo">
-            </div>
-            <div class="column is-narrow has-text-centered">
-              <img class="logo" src="static/images/logo-ethz.png" alt="ETH Zurich Logo">
-            </div>
-          </div>
-          <div class="is-size-5 publication-authors">
-            <span class="author-block">
-              <a href="https://yljblues.github.io/">Yulun Jiang</a><sup>1,2</sup>,</span>
-            <span class="author-block">
-              <a href="https://cyk1337.github.io/">Yekun Chai</a><sup>2</sup>,</span>
-            <span class="author-block"><span class="author-block">
-              <a href="https://brbiclab.epfl.ch/team/">Maria Brbić</a><sup>1</sup>,
-            </span>
-            <span class="author-block">
-              <a href="https://michaelmoor.me/">Michael Moor</a><sup>2</sup>,
-            </span>
-          </div>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="#top">MARBLE<span>.</span></a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="#top" class="on">Project</a>
+        <a href="#benchmark">Benchmark</a>
+        <a href="#results">Results</a>
+        <a href="#diagnostic">Analysis</a>
+        <a href="https://github.com/eth-medical-ai-lab/marble" target="_blank" rel="noopener">Code</a>
+      </nav>
+    </div>
+  </header>
 
-          <div class="is-size-5 publication-authors">
-            <span class="author-block"><sup>1</sup>Department of Computer and Communication Sciences, EPFL, Lausanne, Switzerland </span>
-            <span class="author-block"><sup>2</sup>Department of Biosystems Science and Engineering, ETH Zurich, Basel, Switzerland</span>
-          </div>
-
-          <div class="column has-text-centered">
-            <div class="publication-links">
-              <span class="link-block">
-                <a href="https://huggingface.co/papers/2506.22992"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="fas fa-file-pdf"></i>
-                  </span>
-                  <span>Paper</span>
-                </a>
-              </span>
-              <!-- PDF Link. -->
-              <span class="link-block">
-                <a href="https://arxiv.org/abs/2506.22992"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="ai ai-arxiv"></i>
-                  </span>
-                  <span>arXiv</span>
-                </a>
-              </span>
-              <!-- Video Link. -->
-              <!-- Code Link. -->
-              <span class="link-block">
-                <a href="https://github.com/eth-medical-ai-lab/multimodal-reasoning-bench"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="fab fa-github"></i>
-                  </span>
-                  <span>Code</span>
-                  </a>
-              </span>
-              <!-- Dataset Link. -->
-              <span class="link-block">
-                <a href="https://huggingface.co/datasets/mrble/MARBLE"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                     🤗
-                  </span>
-                  <span>Dataset</span>
-                  </a>
-            </div>
-          </div>
-        </div>
+  <main class="wrap" id="top">
+    <header class="head">
+      <p class="kicker">NeurIPS 2026 &middot; Evaluations and Datasets</p>
+      <h1 class="title">MARBLE: An Agentic Benchmark for Spatial Reasoning and Visual Abstraction</h1>
+      <div class="authors">
+        <span>Yulun Jiang<sup>1,2</sup></span>
+        <span>Na&euml;l Ouerghemi<sup>1</sup></span>
+        <span>Yekun Chai<sup>2</sup></span>
+        <span>Maria Brbi&#263;<sup>1</sup></span>
+        <span>Michael Moor<sup>2</sup></span>
       </div>
-    </div>
-  </div>
-</section>
-
-
-<section class="section">
-  <div class="container is-max-desktop">
-    <!-- Abstract. -->
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Abstract</h2>
-        <div class="content has-text-justified">
-          <p>
-            <!-- The ability to process information from multiple modalities and to reason through it step-by-step remains a critical challenge in advancing artificial intelligence. However, existing reasoning benchmarks focus on text-only reasoning, or employ multimodal questions that can be answered by directly retrieving information from a non-text modality. Thus, complex reasoning remains poorly understood in multimodal domains. Here, we present MARBLE, a challenging multimodal reasoning benchmark that is designed to scrutinize multimodal language models (MLLMs) in their ability to carefully reason step-by-step through complex multimodal problems and environments. MARBLE is composed of two highly challenging tasks, M-Portal and M-Cube,
-that require the crafting and understanding of multistep plans leveraging spatial, visual, and physical constraints, which must be executed correctly and in the proper order. 
-We find that current MLLMs perform poorly on MARBLE---only in simplified ablations models outperform random baselines, indicating that complex reasoning is still a challenge for current MLLMs.
-Moreover, we show that perception is still a bottleneck where MLLM occasionally fails to extract information from the visual input.
-By shedding a light on limitations of MLLMs, we hope that MARBLE will spur the development of the next generation of models with the ability to reason and plan across many, multimodal reasoning steps. -->
-
-The ability to process information from multiple modalities and to reason through it step-by-step remains a critical challenge in advancing artificial intelligence. However, existing reasoning benchmarks focus on text-only reasoning, or employ multimodal questions that can be answered by directly retrieving information from a non-text modality. 
-Thus, complex reasoning remains poorly understood in multimodal domains. Here, we present MARBLE, a challenging multimodal reasoning benchmark designed to scrutinize multimodal language models (MLLMs) in their ability to carefully reason step-by-step through complex multimodal problems and environments. 
-MARBLE is composed of two highly challenging tasks, M-Portal and M-Cube, that require the crafting and understanding of multistep plans under spatial, visual, and physical constraints.
-We find that current MLLMs perform poorly on MARBLE&mdash;all the 12 advanced models obtain near-random performance on M-Portal and 0% accuracy on M-Cube. 
-Only in simplified subtasks some models outperform the random baseline, indicating that complex reasoning is still a challenge for existing MLLMs.
-Moreover, we show that perception remains a bottleneck, where MLLMs occasionally fail to extract information from the visual inputs.
-By shedding a light on the limitations of MLLMs, we hope that MARBLE will spur the development of the next generation of models with the ability to reason and plan across many, multimodal reasoning steps.
-          </p>
-        </div>
+      <div class="affiliations">
+        <span><sup>1</sup>EPFL</span>
+        <span><sup>2</sup>ETH Zurich</span>
       </div>
-    </div>
-    <!--/ Abstract. -->
-  </div>
-</section>
-
-
-<section class="section">
-  <div class="container is-max-desktop">
-    <div class="content is-centered has-text-centered">
-      <h2 class="title is-3">Overview</h2>
-      <p>MARBLE contains 2 datasets: M-Portal and M-CUBE. Each dataset also contains 2 subtasks, respectively.</p>
-      <img id="display-image" src="static/images/overview.png" alt="Displayed Image" style="max-height: 200px;">
-    </div>
-  <div>
-</section>
-
-
-<section class="section">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered">
-      <div class="content has-text-justified">
-        <div class="column is-centered has-text-centered">
-          <h2 class="title is-3">M-Portal Dataset</h2>
-        </div>
-        <div class="column is-centered">
-          <p>The M-PORTAL dataset contains 1,024 visual question-answering tasks across 16 high-quality curated maps from the game Portal 2.
-            Models are evaluated on two subtasks: verifying the correctness of full solution plans (Plan-correctness) and identifying missing steps in incomplete ones (Fill-the-blanks), each contributing to 512 problems.
-          </p>       
-        </div>
-        <div class="column is-centered and has-text-centered">
-          <img id="display-portal-image" src="static/images/portal.png" alt="Displayed Image" style="max-height: 500px;">
-        </div>
-        <div class="column is-centered and has-text-centered">      
-          <button class="button toggle" id="portal-dataset-button" onclick="showPortalDatasetImage()" disabled>
-              <span>Dataset Pipeline</span>
-          </button>
-          <button class="button toggle" id="portal-example-button" onclick="showPortalExampleImage()">
-              <span>Example Problem</span>
-          </button>
-        </div>
+      <div class="btns">
+        <a class="btn btn-primary" href="https://arxiv.org/pdf/2506.22992" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          Paper (PDF)
+        </a>
+        <a class="btn btn-primary" href="https://github.com/eth-medical-ai-lab/marble" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+          Code
+        </a>
+        <a class="btn btn-ghost" href="https://huggingface.co/datasets/mrble/MARBLE" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+          Dataset
+        </a>
+        <a class="btn btn-ghost" href="#citation">BibTeX</a>
       </div>
-    </div>
+    </header>
 
-    <div class="column is-centered">
+    <!-- Lead showcase: three live environment demonstrations -->
+    <figure class="wide-fig lead-fig">
+      <div class="env-grid">
+        <article class="env-card">
+          <div class="env-media env-media-cube">
+            <img src="assets/gif/cube_demo.gif" alt="CUBE demonstration: assembling jigsaw face pieces into a 3D cube" width="960" height="720">
+          </div>
+          <div class="env-meta">
+            <div class="env-title-row">
+              <h3>CUBE</h3>
+              <span class="env-tag">3D Assembly</span>
+            </div>
+            <p>Orient and interlock jigsaw faces to assemble a closed 5&times;5&times;5 cube.</p>
+          </div>
+        </article>
+
+        <article class="env-card">
+          <div class="env-media env-media-maze">
+            <img src="assets/gif/maze_demo.gif" alt="MAZE demonstration: shifting corridors with spare tile insertions and moving to the target" width="960" height="720">
+          </div>
+          <div class="env-meta">
+            <div class="env-title-row">
+              <h3>MAZE</h3>
+              <span class="env-tag">Dynamic Topology</span>
+            </div>
+            <p>Shift a 7&times;7 labyrinth with a spare tile to open paths to the target.</p>
+          </div>
+        </article>
+
+        <article class="env-card">
+          <div class="env-media env-media-blox">
+            <img src="assets/gif/blox_demo.gif" alt="BLOX demonstration: rolling a rectangular block over elevators and crumble tiles to reach the goal" width="960" height="720">
+          </div>
+          <div class="env-meta">
+            <div class="env-title-row">
+              <h3>BLOX</h3>
+              <span class="env-tag">Pose &amp; Terrain</span>
+            </div>
+            <p>Roll a 1&times;1&times;2 block over elevators and crumble tiles to stand on the goal.</p>
+          </div>
+        </article>
+      </div>
+      <figcaption><strong>Figure 1.</strong> MARBLE's three gym-style environments: CUBE, MAZE, and BLOX. Solving each task requires abstracting rendered scenes into structured spatial states and planning across action-conditioned transitions.</figcaption>
+    </figure>
+
+    <!-- Section 1: Benchmark & Design Choice -->
+    <section class="col prose" id="benchmark" aria-labelledby="benchmark-title">
+      <h2 class="sec" id="benchmark-title">Benchmark design: isolating visual abstraction from planning</h2>
       <p>
-      On the plan correctness task, all investigated MLLMs performed very poorly with a minority class F1 score of around 6%, similar to the random baseline. 
-      On the easier fill-the-blanks task, most models outperform the random baseline. 
-      Still, even the best performing model, GPT-o3, manages to correctly solve only 17.6% of the problems.
+        Spatially grounded agents need two capabilities: <strong>visual abstraction</strong>&mdash;turning raw images into structured spatial states&mdash;and <strong>long-horizon planning</strong> over how actions transform those states. MARBLE controls difficulty along these two axes by independently varying observation format and required planning horizon. Crossing them yields standardized <em>Easy</em> and <em>Hard</em> splits alongside matched single-factor ablations.
       </p>
-    </div>
-    <table class="table is-fullwidth is-hoverable model-table">
-      <thead>
-        <tr>
-          <!-- You can add Font Awesome sort arrows if you like -->
-          <th class="sortable">Model</th>
-          <th class="sortable">Plan-correctness&nbsp;(F1&nbsp;%)</th>
-          <th class="sortable">Fill-the-blanks&nbsp;(Acc&nbsp;%)</th>
-        </tr>
-      </thead>
+    </section>
 
-      <tbody>
-        <tr><td><img class="model-icon" src="static/images/openai.svg"><a href="https://openai.com/index/introducing-o3-and-o4-mini/" style="text-decoration: underline; color: inherit;">GPT-o3           </a></td>          <td>6.6</td><td>17.6</td></tr>
-        <tr><td><img class="model-icon" src="static/images/gemini.png"><a href="https://blog.google/technology/google-deepmind/gemini-model-thinking-updates-march-2025/" style="text-decoration: underline; color: inherit;">Gemini-2.5-pro</a></td>             <td>4.7</td><td>16.1</td></tr>
-        <tr><td><img class="model-icon" src="static/images/deepseek_icon.png"><a href="https://api-docs.deepseek.com/news/news250528" style="text-decoration: underline; color: inherit;">DeepSeek-R1-0528*       </a></td>          <td>0.0</td><td>8.4</td></tr>
-        <tr><td><img class="model-icon" src="static/images/claude.png"><a href="https://www.anthropic.com/news/claude-3-7-sonnet" style="text-decoration: underline; color: inherit;">Claude-3.7-Sonnet    </a></td>          <td>6.3</td><td>6.8</td></tr>
-        <tr><td><img class="model-icon" src="static/images/deepseek_icon.png"><a href="https://arxiv.org/abs/2501.12948" style="text-decoration: underline; color: inherit;">DeepSeek-R1*                         </a></td>          <td>6.1</td><td>5.5</td></tr>
-        <tr><td><img class="model-icon" src="static/images/seed.png"><a href="https://arxiv.org/abs/2505.07062" style="text-decoration: underline; color: inherit;">Seed1.5-VL                           </a></td>          <td>7.6</td><td>3.5</td></tr>
-        <tr><td><img class="model-icon" src="static/images/openai.svg"><a href="https://openai.com/index/introducing-o3-and-o4-mini/" style="text-decoration: underline; color: inherit;">GPT-o4-mini      </a></td>          <td>0.0</td><td>3.1</td></tr>
-        <tr><td><img class="model-icon" src="static/images/openai.svg"><a href="https://arxiv.org/abs/2410.21276" style="text-decoration: underline; color: inherit;">GPT-4o                               </a></td>          <td>6.5</td><td>0.4</td></tr>
-        <tr><td><img class="model-icon" src="static/images/meta_icon.png"><a href="https://ai.meta.com/blog/llama-4-multimodal-intelligence/" style="text-decoration: underline; color: inherit;">Llama-4-Scout</a></td>         <td>6.5</td><td>0.2</td></tr>
-        <tr><td><img class="model-icon" src="static/images/qwen_icon.png"><a href="https://arxiv.org/abs/2502.13923" style="text-decoration: underline; color: inherit;">Qwen2.5-VL-72B                       </a></td>          <td>6.6</td><td>0.2</td></tr>
-        <tr><td><img class="model-icon" src="static/images/internvl.jpg"><a href="https://internvl.github.io/blog/2025-04-11-InternVL-3.0/" style="text-decoration: underline; color: inherit;">InternVL3-78B</a></td>          <td>6.4</td><td>0.0</td></tr>
-        <tr><td><img class="model-icon" src="static/images/qwen_icon.png" alt="Qwen icon"><a href="https://qwenlm.github.io/blog/qwen3/" style="text-decoration: underline; color: inherit;">Qwen3-235B-A22B*                  </a></td>         <td>0.0</td><td>0.0</td></tr>      </tbody>
-        <tr><td><em>Random</em></td>            <td><em>6.1</em></td><td><em>3e-3</em></td></tr>
-      </tbody>
-    </table>
-  </div>
-</section>
+    <figure class="wide-fig">
+      <div class="card design-card">
+        <div class="design-grid">
+          <!-- Left: Visual Abstraction -->
+          <div class="design-panel">
+            <p class="panel-kicker">Observation Format</p>
+            <h3 class="panel-title">Visual-to-spatial abstraction</h3>
+            <div class="abstraction-flow">
+              <div class="flow-obs">
+                <img src="assets/blox-isometric.webp" alt="Isometric BLOX observation" width="420" height="315">
+                <span>Rendered image</span>
+              </div>
+              <div class="flow-arrow" aria-hidden="true">
+                <svg viewBox="0 0 36 24"><line x1="2" y1="12" x2="30" y2="12"/><polyline points="24 6 30 12 24 18"/></svg>
+                <span>abstract</span>
+              </div>
+              <div class="flow-sym">
+                <pre><code><span class="tk">block:</span>  (6, 2), STANDING
+<span class="tk">height:</span> LOW (0)
+<span class="tk">goal:</span>   (1, 1), HIGH (1)
+<span class="tk">elev:</span>   (4, 0)
+<span class="tk">crumble:</span> (1,0), (5,0), ...
+<span class="tk">low:</span>    ####..C / ...
+<span class="tk">high:</span>   ..C..## / ...</code></pre>
+                <span>Structured symbolic state</span>
+              </div>
+            </div>
+            <p class="panel-note">In <strong>visual-only</strong> tasks, agents must recover this state from pixels; in <strong>symbolic-augmented</strong> tasks, it is provided alongside the image.</p>
+          </div>
 
+          <!-- Right: 2x2 Control Grid -->
+          <div class="design-panel">
+            <p class="panel-kicker">Two-Axis Difficulty Control</p>
+            <h3 class="panel-title">Four controlled benchmark splits</h3>
+            <div class="matrix-shell">
+              <div class="matrix-grid">
+                <div class="matrix-corner"></div>
+                <div class="matrix-col-head">Short horizon</div>
+                <div class="matrix-col-head">Long horizon</div>
 
-<section class="section">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered">
-      <div class="content has-text-justified">
-        <div class="column is-centered has-text-centered">
-          <h2 class="title is-3">M-CUBE Dataset</h2>
-        </div>
-        <p>M-CUBE is a 3D spatial-reasoning benchmark where the goal is to assemble six interlocking jigsaw pieces into a perfect cube.
-          A model must assign every piece to a cube face with correct orientation, exploring a combinatorial search space. 
-          The dataset includes 1,000 CUBE examples at full difficulty and 1,000 CUBE-easy examples with simplified inputs and partial solutions.
-        </p>
-        <div class="column is-centered has-text-centered">
-          <!-- <img id="display-cube-image" src="static/images/cube.png" alt="Displayed Image" style="max-height: 300px;"> -->
-          <div style="height: 300px; display: flex; align-items: center; justify-content: center; background-color: white;">
-            <img id="display-cube-image" src="static/images/cube.png" alt="Displayed Image" style="max-height: 100%">
+                <div class="matrix-row-head">Visual-only</div>
+                <div class="matrix-cell cell-ablation">
+                  <strong>Ablation split</strong>
+                  <span>&uarr; Isolates visual abstraction</span>
+                </div>
+                <div class="matrix-cell cell-hard">
+                  <strong>Hard split</strong>
+                  <span>Long horizon, images only</span>
+                </div>
+
+                <div class="matrix-row-head">Symbolic-aug</div>
+                <div class="matrix-cell cell-easy">
+                  <strong>Easy split</strong>
+                  <span>Short horizon + symbolic</span>
+                </div>
+                <div class="matrix-cell cell-ablation">
+                  <strong>Ablation split</strong>
+                  <span>&rarr; Isolates planning horizon</span>
+                </div>
+
+                <div class="matrix-corner"></div>
+                <div class="matrix-x-axis">Planning horizon &rarr;</div>
+              </div>
+            </div>
+            <p class="panel-note">Varying one axis at a time from the <em>Easy</em> split separates planning horizon (horizontal) from visual abstraction (vertical).</p>
           </div>
         </div>
-        <div class="column is-centered and has-text-centered">      
-          <button class="button toggle" id="cube-dataset-button" onclick="showCubeDatasetImage()" disabled>
-              <span>Dataset Pipeline</span>
-          </button>
-          <button class="button toggle" id="cube-example-button" onclick="showCubeExampleImage()">
-              <span>Example Problem</span>
-          </button>
-        </div>
       </div>
-    </div>
-    
-    <div class="column is-centered">
+      <figcaption><strong>Figure 2.</strong> Visual-to-spatial abstraction (left) and MARBLE's 2&times;2 difficulty control crossing observation format with planning horizon (right).</figcaption>
+    </figure>
+
+    <!-- Section 2: Main Experiments & Gap -->
+    <section class="col prose" id="results" aria-labelledby="results-title">
+      <h2 class="sec" id="results-title">Frontier models excel on Easy, collapse on Hard</h2>
       <p>
-      Notably, all the advanced MLLMs completely fail on the harder subtask CUBE and obtain 0% accuracy. 
-      While on the simplified tasks CUBE-easy, most model score below 20% accuracy. Only GPT-o3 demonstrates reasonable performance of 72.0% accuracy.
+        We evaluate ten open- and closed-weight MLLMs in multi-turn interaction alongside experienced human players. On the <em>Easy</em> split&mdash;where horizons are short and symbolic states are provided&mdash;MARBLE cleanly separates model capabilities, and leading frontier systems match or exceed human performance.
       </p>
-    </div>
+      <p>
+        On the <em>Hard</em> split, performance collapses across the board: every model fails completely on hard CUBE, and even the strongest frontier systems fall into the single digits overall. Humans, by contrast, remain steady across difficulty tiers.
+      </p>
+    </section>
 
-    <table class="table is-fullwidth is-hoverable model-table">
-      <thead>
-        <tr>
-          <!-- You can add Font Awesome sort arrows if you like -->
-          <th class="sortable">Model</th>
-          <th class="sortable">CUBE&nbsp;(Acc&nbsp;%)</th>
-          <th class="sortable">CUBE-easy&nbsp;(Acc&nbsp;%)</th>
-        </tr>
-      </thead>
+    <figure class="wide-fig">
+      <div class="card chart-card">
+        <div class="chart-card-head">
+          <div>
+            <h3 class="chart-card-title">Multi-turn task success &amp; easy&ndash;hard gap</h3>
+            <p class="chart-card-sub">Interactive puzzle completion rate (%). Switch environments to inspect per-task performance.</p>
+          </div>
+          <div class="segmented" id="results-tabs" role="tablist" aria-label="Filter environment"></div>
+        </div>
+        <div id="results-chart"></div>
+        <div class="stat-strip" id="results-strip" aria-live="polite"></div>
+      </div>
+      <figcaption><strong>Figure 3.</strong> Multi-turn success rates across ten MLLMs and human players. Leading models surpass humans on Easy but collapse sharply on Hard.</figcaption>
+    </figure>
 
-      <tbody>
-        <tr><td><img class="model-icon" src="static/images/openai.svg" alt="OpenAI icon"><a href="https://openai.com/index/introducing-o3-and-o4-mini/" style="text-decoration: underline; color: inherit;">GPT-o3           </a></td>          <td>0.0</td><td>72.0</td></tr>
-        <tr><td><img class="model-icon" src="static/images/openai.svg" alt="OpenAI icon"><a href="https://openai.com/index/introducing-o3-and-o4-mini/" style="text-decoration: underline; color: inherit;">GPT-o4-mini      </a></td>          <td>0.0</td><td>16.0</td></tr>
-        <tr><td><img class="model-icon" src="static/images/deepseek_icon.png" alt="DeepSeek icon"><a href="https://arxiv.org/abs/2501.12948" style="text-decoration: underline; color: inherit;">DeepSeek-R1*                         </a></td>          <td>0.0</td><td>14.0</td></tr>
-        <tr><td><img class="model-icon" src="static/images/gemini.png" alt="Gemini icon"><a href="https://blog.google/technology/google-deepmind/gemini-model-thinking-updates-march-2025/" style="text-decoration: underline; color: inherit;">Gemini-2.5-pro</a></td>             <td>0.0</td><td>11.0</td></tr>
-        <tr><td><img class="model-icon" src="static/images/deepseek_icon.png" alt="DeepSeek icon"><a href="https://api-docs.deepseek.com/news/news250528" style="text-decoration: underline; color: inherit;">DeepSeek-R1-0528*       </a></td>          <td>0.0</td><td>8.0</td></tr>
-        <tr><td><img class="model-icon" src="static/images/claude.png" alt="Claude icon"><a href="https://www.anthropic.com/news/claude-3-7-sonnet" style="text-decoration: underline; color: inherit;">Claude-3.7-Sonnet    </a></td>          <td>0.0</td><td>7.4</td></tr>
-        <tr><td><img class="model-icon" src="static/images/internvl.jpg" alt="InternVL icon"><a href="https://internvl.github.io/blog/2025-04-11-InternVL-3.0/" style="text-decoration: underline; color: inherit;">InternVL3-78B</a></td>          <td>0.0</td><td>2.8</td></tr>
-        <tr><td><img class="model-icon" src="static/images/seed.png" alt="Seed icon"><a href="https://arxiv.org/abs/2505.07062" style="text-decoration: underline; color: inherit;">Seed1.5-VL                           </a></td>          <td>0.0</td><td>2.0</td></tr>
-        <tr><td><img class="model-icon" src="static/images/openai.svg" alt="OpenAI icon"><a href="https://arxiv.org/abs/2410.21276" style="text-decoration: underline; color: inherit;">GPT-4o                               </a></td>          <td>0.0</td><td>2.0</td></tr>
-        <tr><td><img class="model-icon" src="static/images/qwen_icon.png" alt="Qwen icon"><a href="https://arxiv.org/abs/2502.13923" style="text-decoration: underline; color: inherit;">Qwen2.5-VL-72B                       </a></td>          <td>0.0</td><td>2.0</td></tr>
-        <tr><td><img class="model-icon" src="static/images/meta_icon.png" alt="Meta icon"><a href="https://ai.meta.com/blog/llama-4-multimodal-intelligence/" style="text-decoration: underline; color: inherit;">Llama-4-Scout</a></td>         <td>0.0</td><td>1.6</td></tr>
-        <tr><td><img class="model-icon" src="static/images/qwen_icon.png" alt="Qwen icon"><a href="https://qwenlm.github.io/blog/qwen3/" style="text-decoration: underline; color: inherit;">Qwen3-235B-A22B*                  </a></td>         <td>0.0</td><td>0.3</td></tr>
-        <tr><td><em>Random</em></td>            <td><em>1e-5</em></td><td><em>3.1</em></td></tr>
-      </tbody>
-    </table>
+    <!-- Section 3: Pairwise Diagnostic -->
+    <section class="col prose" id="diagnostic" aria-labelledby="diagnostic-title">
+      <h2 class="sec" id="diagnostic-title">Visual abstraction&mdash;not planning horizon&mdash;is the major bottleneck</h2>
+      <p>
+        Because the Hard split changes planning horizon and observation format together, we run a controlled <strong>2&times;2 ablation</strong> on two leading open-weight models&mdash;<strong>Kimi K2.6</strong> and <strong>Gemma 4 31B</strong>&mdash;varying one axis at a time.
+      </p>
+      <p>
+        Extending the planning horizon with symbolic states intact mainly affects the smaller model, while Kimi K2.6 remains virtually unchanged. Removing symbolic states at the same short horizon, however, collapses both models across every environment&mdash;showing that extracting accurate spatial states from vision, rather than planning itself, is the primary bottleneck.
+      </p>
+    </section>
 
-    <div class="columns is-centered">
-      <div class="content has-text-justified">
-        <p></p>
-        <p>Additionally, we observe that even the advanced MLLMs struggle with a seemingly simple perception task: convert a jigsaw-style piece into a 5 × 5 array, posing a potential bottleneck for multimodal reasoning in complex scenarios like CUBE</p>
-        <div class="column is-centered has-text-centered">
-          <img id="display-image" src="static/images/perception.png" alt="Displayed Image" style="max-height: 400px;">
+    <figure class="wide-fig">
+      <div class="card chart-card">
+        <div class="chart-card-head">
+          <div>
+            <h3 class="chart-card-title">Controlled 2&times;2 ablation: horizon vs. observation format</h3>
+            <p class="chart-card-sub">Matched pairwise comparisons isolating planning horizon (left) from visual abstraction (right).</p>
+          </div>
+          <div class="segmented" id="diagnostic-tabs" role="tablist" aria-label="Diagnostic environment filter"></div>
+        </div>
+        <div id="diagnostic-chart"></div>
+        <div class="heatmap-section" id="diagnostic-heatmap"></div>
+      </div>
+      <figcaption><strong>Figure 4.</strong> Top: matched pairwise comparisons holding one axis fixed. Bottom: full 2&times;2 success rates (%) per environment (click any environment header or tab to focus).</figcaption>
+    </figure>
+
+    <!-- Section 4: Spatial State Parsing -->
+    <section class="col prose" id="parsing" aria-labelledby="parsing-title">
+      <h2 class="sec" id="parsing-title">Models fail on simple spatial state parsing</h2>
+      <p>
+        To probe visual abstraction directly with no planning involved, we evaluate atomic <strong>spatial state parsing</strong>: reconstructing a CUBE piece grid, a MAZE board's tile types and rotations, or a BLOX board's layout and pose from a single image.
+      </p>
+      <p>
+        Humans find these parsing tasks effortless, achieving near-perfect accuracy across all three environments. Frontier MLLMs trail far behind&mdash;struggling especially on dense MAZE tile orientations&mdash;confirming that models fail to read basic spatial states before planning even begins.
+      </p>
+    </section>
+
+    <figure class="wide-fig">
+      <div class="card chart-card">
+        <div class="chart-card-head">
+          <div>
+            <h3 class="chart-card-title">Per-cell spatial state parsing accuracy (%)</h3>
+            <p class="chart-card-sub">Direct image-to-grid extraction without planning, compared against the near-100% human ceiling.</p>
+          </div>
+          <div class="segmented" id="parsing-tabs" role="tablist" aria-label="Parsing view"></div>
+        </div>
+        <div class="task-chips" aria-label="Parsing task definitions">
+          <span><strong>CUBE</strong> 5&times;5 filled cells</span>
+          <span><strong>MAZE</strong> 7&times;7 tile (I/L/T) &amp; rotation (0&ndash;3)</span>
+          <span><strong>BLOX</strong> layout, pose &amp; goal</span>
+        </div>
+        <div id="parsing-chart"></div>
+        <div class="stat-strip stat-strip-2" id="parsing-strip"></div>
+      </div>
+      <figcaption><strong>Figure 5.</strong> Per-cell parsing accuracy against the human ceiling (&ge;98.6% across all tasks). Unfilled tracks highlight how far frontier models fall short of near-perfect human perception.</figcaption>
+    </figure>
+
+    <section class="col prose compact-top">
+      <p>
+        Two follow-up probes reveal why parsing breaks down and how far tools can help. Rendering the exact same CUBE and BLOX states from a <strong>flat 2D top-down view</strong> instead of 3D isometric lifts every model substantially, pointing to isometric projection as a key source of error. Equipping models with <strong>Python code execution</strong> also improves MAZE parsing consistently&mdash;most sharply for Gemini 3.1 Pro, which iteratively crops tiles and verifies edge pixels.
+      </p>
+    </section>
+
+    <figure class="wide-fig">
+      <div class="probes-grid">
+        <!-- Probe 1: Isometric vs Flat 2D -->
+        <div class="card probe-card">
+          <div class="probe-head">
+            <div>
+              <p class="panel-kicker">Probe A &middot; Viewpoint</p>
+              <h3 class="chart-card-title">Isometric 3D vs. flat 2D gap</h3>
+            </div>
+            <div class="segmented segmented-sm" id="view-tabs" role="tablist" aria-label="Viewpoint environment"></div>
+          </div>
+          <div class="view-pair">
+            <div class="view-thumb">
+              <img id="view-iso-img" src="assets/blox-isometric.webp" alt="BLOX board rendered in isometric 3D" width="420" height="315">
+              <span id="view-iso-cap">BLOX &middot; Isometric 3D</span>
+            </div>
+            <div class="view-thumb">
+              <img id="view-flat-img" src="assets/blox-flat.webp" alt="Same BLOX board rendered in flat 2D top-down view" width="420" height="315">
+              <span id="view-flat-cap">BLOX &middot; Flat 2D</span>
+            </div>
+          </div>
+          <div id="view-chart"></div>
+        </div>
+
+        <!-- Probe 2: Code-assisted Agentic Vision -->
+        <div class="card probe-card">
+          <div class="probe-head">
+            <div>
+              <p class="panel-kicker">Probe B &middot; Agentic Vision</p>
+              <h3 class="chart-card-title">Code-assisted MAZE parsing</h3>
+            </div>
+            <span class="probe-badge">MAZE 7&times;7</span>
+          </div>
+          <p class="probe-lead">Per-cell MAZE accuracy with vision only vs. Python code execution.</p>
+          <div id="tools-chart"></div>
         </div>
       </div>
-    </div>
+      <figcaption><strong>Figure 6.</strong> Left: flat 2D rendering lifts parsing accuracy substantially over isometric 3D on identical states. Right: code execution boosts MAZE parsing over vision-only baselines across all five models.</figcaption>
+    </figure>
 
-  </div>
-</section>
-
-<section class="section" id="BibTeX">
-  <div class="container is-max-desktop content">
-    <h2 class="title">BibTeX</h2>
-    <pre><code>@article{jiang2025marble,
-  title={MARBLE: A Hard Benchmark for Multimodal Spatial Reasoning and Planning},
-  author={Jiang, Yulun and Chai, Yekun and Brbi'c, Maria and Moor, Michael},
-  journal={arXiv preprint arXiv:2506.22992},
-  year={2025},
-  url={http://arxiv.org/abs/2506.22992}
-}</code>
-    </pre>
-  </div>
-</section>
-
-
-<footer class="footer">
-  <div class="container">
-    <div class="columns is-centered">
-      <div class="column is-8">
-        <div class="content">
-          <p>
-            This website is based on the <a href="https://github.com/nerfies/nerfies.github.io">Nerfies website template</a>, which is licensed under a <a rel="license"
-                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
-          </p>
-        </div>
+    <!-- Citation -->
+    <section class="col" id="citation" aria-labelledby="citation-title">
+      <h2 class="sec" id="citation-title">Citation</h2>
+      <div class="bib-wrap">
+        <button class="copy-btn" id="copy-citation" type="button" aria-label="Copy BibTeX citation">Copy</button>
+        <pre class="bib" id="bibtex">@inproceedings{jiang2026marble,
+  title     = {MARBLE: An Agentic Benchmark for Spatial Reasoning
+               and Visual Abstraction},
+  author    = {Jiang, Yulun and Ouerghemi, Na{\"e}l and Chai, Yekun
+               and Brbi{\'c}, Maria and Moor, Michael},
+  booktitle = {Advances in Neural Information Processing Systems},
+  note      = {Evaluations and Datasets Track},
+  year      = {2026}
+}</pre>
       </div>
-    </div>
-  </div>
-  
-</footer>
+    </section>
+
+    <footer class="site-footer">
+      <div class="footer-left">
+        <span>MARBLE &middot; EPFL &amp; ETH Zurich</span>
+        <span class="sep">&middot;</span>
+        <a href="https://arxiv.org/pdf/2506.22992" target="_blank" rel="noopener">Paper</a>
+        <span class="sep">&middot;</span>
+        <a href="https://github.com/eth-medical-ai-lab/marble" target="_blank" rel="noopener">Code</a>
+        <span class="sep">&middot;</span>
+        <a href="https://huggingface.co/datasets/mrble/MARBLE" target="_blank" rel="noopener">Dataset</a>
+        <span class="sep">&middot;</span>
+        <a href="assets/maze-acknowledgements.md">MAZE artwork credits</a>
+      </div>
+      <a class="back-top" href="#top">Back to top &uarr;</a>
+    </footer>
+  </main>
+
+  <noscript>
+    <p class="noscript">Enable JavaScript to view the interactive charts. All results are available in the <a href="https://arxiv.org/pdf/2506.22992">paper PDF</a>.</p>
+  </noscript>
 </body>
 </html>

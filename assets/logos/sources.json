@@ -1,0 +1,93 @@
+{
+  "purpose": "Identification of evaluated model families.",
+  "sources": [
+    {
+      "file": "gpt.svg",
+      "model_family": "GPT / ChatGPT",
+      "source": "https://raw.githubusercontent.com/lobehub/lobe-icons/master/packages/static-svg/icons/openai.svg",
+      "sha256": "802335af1ddb4e135468f689aabe7ac7798a3177c1b71bbd4549fc602e9264ed"
+    },
+    {
+      "file": "qwen.svg",
+      "model_family": "Qwen",
+      "source": "https://raw.githubusercontent.com/lobehub/lobe-icons/master/packages/static-svg/icons/qwen-color.svg",
+      "sha256": "4f42f475db371eb2b641f9535dfbe9d1378da127dfe1be52f1b3cc3f47265e04"
+    },
+    {
+      "file": "kimi.svg",
+      "model_family": "Kimi",
+      "source": "https://raw.githubusercontent.com/lobehub/lobe-icons/master/packages/static-svg/icons/kimi-color.svg",
+      "sha256": "abfdabd5e15924ec40d919005b1bc4b0099a9bfa71eb721672966c0b082690dc"
+    },
+    {
+      "file": "gemini.svg",
+      "model_family": "Gemini",
+      "source": "https://raw.githubusercontent.com/lobehub/lobe-icons/master/packages/static-svg/icons/gemini-color.svg",
+      "sha256": "4fb5af9c85ca246667d2376d06fc785325e37ce9c9ef3d6606f07ba18602868e"
+    },
+    {
+      "file": "grok.svg",
+      "model_family": "Grok",
+      "source": "https://raw.githubusercontent.com/lobehub/lobe-icons/master/packages/static-svg/icons/grok.svg",
+      "sha256": "8cb45f2ba02c4b41cd47b5719bff6e8a03368ff9cc73e1cb7e290028d62e9eaa"
+    },
+    {
+      "file": "gemma.svg",
+      "model_family": "Gemma",
+      "source": "https://raw.githubusercontent.com/lobehub/lobe-icons/master/packages/static-svg/icons/gemma-color.svg",
+      "sha256": "4ed5dadb629fff772b4c78b8894404e4bd9b0335ac7eab2e138cb3feb5da8165"
+    },
+    {
+      "file": "glm.svg",
+      "model_family": "GLM-V",
+      "source": "https://raw.githubusercontent.com/lobehub/lobe-icons/master/packages/static-svg/icons/glmv-color.svg",
+      "sha256": "087aeba9e4da87d84405467eacaabd89df72adbbf35f00cad6f7ca41ee23f3bc"
+    }
+  ],
+  "llama": "Uses the Meta logo (meta.png).",
+  "lobe_icons": "https://github.com/lobehub/lobe-icons (MIT; trademarks belong to their owners)",
+  "legacy_sources": [
+    {
+      "file": "openai.svg",
+      "organization": "OpenAI",
+      "source": "https://marble-benchmark.github.io/static/images/openai.svg",
+      "sha256": "e1dc4bc595cb085b6e33f198fd18b54396ef5a6443198a00ab08fa1d81ad74df"
+    },
+    {
+      "file": "moonshot.png",
+      "organization": "Moonshot AI",
+      "source": "https://statics.kimi.ai/moonshot-ai/favicon.ico",
+      "sha256": "a9764155aa8f0d5f458a10952324f90f643b41da67b8460f8228f4258f7f022d"
+    },
+    {
+      "file": "google.png",
+      "organization": "Google",
+      "source": "https://www.google.com/images/branding/googleg/1x/googleg_standard_color_128dp.png",
+      "sha256": "5b95eed86b7603081f22edd5da01de4c028b118b20885793b9b3ad5f6cbe1e71"
+    },
+    {
+      "file": "xai.svg",
+      "organization": "xAI",
+      "source": "https://raw.githubusercontent.com/lobehub/lobe-icons/master/packages/static-svg/icons/xai.svg",
+      "sha256": "89eb7de9f0d02a41cfecd9109e253d7fd3529e27467dee4254faa67f3ac21451"
+    },
+    {
+      "file": "alibaba.svg",
+      "organization": "Alibaba",
+      "source": "https://raw.githubusercontent.com/lobehub/lobe-icons/master/packages/static-svg/icons/alibaba-color.svg",
+      "sha256": "48ee796c5b1da5f5f11dbd70c5c64a3f7efcb9eeb9022ae687d81fc813e942ee"
+    },
+    {
+      "file": "zai.svg",
+      "organization": "Z.ai",
+      "source": "https://z-cdn.chatglm.cn/z-ai/static/logo.svg",
+      "sha256": "07a45e8e35b0b631ed2c68cd1cb041f9721b1ceeb0bd0e34f1459b0304a741c7"
+    },
+    {
+      "file": "meta.png",
+      "organization": "Meta",
+      "source": "https://marble-benchmark.github.io/static/images/meta_icon.png",
+      "sha256": "a629af90a9f730bb6db38d19bb4c68e73eb68c37e2e4b68da170ec9cea046169"
+    }
+  ]
+}
